@@ -7,16 +7,11 @@ import loginBackgroundImage from '../assets/media/svg/login-visual-2.svg'
 import { GlobalContext } from '../context/global/globalContext'
 
 export const Login = () => {
-	// let {log} = useContext(GlobalContext)
+	let {log} = useContext(GlobalContext)
 
 	let [state, setState] = useState({userName: '', password: ''})
 	let [err, setErr] = useState(false)
-  const log =  {
-		in: data => {
-			console.log(data);
-			return true
-		},
-	}
+
   return (
     <div className="d-flex flex-column flex-root">
 			<div className="login login-2 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white">
