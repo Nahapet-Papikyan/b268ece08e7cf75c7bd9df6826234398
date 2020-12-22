@@ -1,34 +1,33 @@
 import React from "react"
 import {DbContext} from "./dbContext"
-import {  APIUrl} from "../../url"
+import {APIUrl} from "./url"
 
-import {getKey} from "../../key";
+import {getKey} from "./key";
 import {ANTOUBYI, GPDBUIAAPI, GUDBIOLP} from "../type";
 
 
-
-export const DB  = ({children}) => {
+export const DB = ({children}) => {
     const Actions = {
-        [GUDBIOLP] : (args) => ({
-                url:APIUrl,
-                method: "POST",
-                body:JSON.stringify({
-                    args,
-                    action:GUDBIOLP
-                }),
-            }),
-        [ANTOUBYI]:(args)=>({
-            url:APIUrl,
+        [GUDBIOLP]: (args) => ({
+            url: APIUrl,
             method: "POST",
-            body:JSON.stringify({
+            body: JSON.stringify({
                 args,
-                action:ANTOUBYI,
+                action: GUDBIOLP
+            }),
+        }),
+        [ANTOUBYI]: (args) => ({
+            url: APIUrl,
+            method: "POST",
+            body: JSON.stringify({
+                args,
+                action: ANTOUBYI,
             }),
         }),
 
 
     }
-    const get = async ({url, method, body, callBack, ErrorCallBack,id=-1}) => {
+    const get = async ({url, method, body, callBack, ErrorCallBack, id = -1}) => {
 
 
         let init = {
@@ -41,7 +40,7 @@ export const DB  = ({children}) => {
                 "Access-Control-Allow-Methods": "*",
                 "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
                 'Content-Type': 'application/json',
-                "X-CSRF-Token":getKey(id),
+                "X-CSRF-Token": getKey(id),
 
             })
         }
@@ -64,11 +63,11 @@ export const DB  = ({children}) => {
     }
     const getData = (type, callBack, ErrorCallBack, args = {}) =>
         get({...Actions[type](args), callBack, ErrorCallBack})
-    const setData = (id,type, callBack, ErrorCallBack, args = {}) =>
-        get({...Actions[type](args), callBack, ErrorCallBack,id})
+    const setData = (id, type, callBack, ErrorCallBack, args = {}) =>
+        get({...Actions[type](args), callBack, ErrorCallBack, id})
 
     return (
-        <DbContext.Provider value={{getData,setData}}>
+        <DbContext.Provider value={{getData, setData}}>
             {children}
         </DbContext.Provider>
     )

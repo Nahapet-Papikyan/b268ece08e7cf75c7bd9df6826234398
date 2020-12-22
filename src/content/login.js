@@ -34,7 +34,6 @@ export const Login = () => {
 									<div className="form-group fv-plugins-icon-container">
 										<div className="d-flex justify-content-between mt-n5">
 											<label className="font-size-h6 font-weight-bolder text-dark pt-5">Password</label>
-											<a href="javascript:;" className="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5" id="kt_login_forgot">Forgot Password ?</a>
 										</div>
 										<input className="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="password" name="password" autocomplete="off" />
 									<div className="fv-plugins-message-container"></div>

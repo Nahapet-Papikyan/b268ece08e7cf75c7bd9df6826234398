@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useReducer, useState} from "react"
 import {globalReducer} from "./globalReducer"
 import {GlobalContext} from "./globalContext"
-import {user} from "../../cookie"
+import {user} from "./cookie"
 import {
     ACTIVE_FILTER,
     ANTOUBYI, COMPLETE, DESCRIPTION,
@@ -21,7 +21,7 @@ import {DbContext} from "../db/dbContext"
 let initState = {
     user: {
         id: -1,
-        status: false
+        status: true
     },
     sizes: {
         w: window.innerWidth,

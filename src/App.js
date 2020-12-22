@@ -1,18 +1,18 @@
 import React from 'react';
-import { DB } from "./context/db/DbState";
-import { Content } from './content/content'
-import { Global } from "./context/global/GlobalState";
+import {DB} from "./context/db/DbState";
+import {Content} from './content/content'
+import {Global} from "./context/global/GlobalState";
 
 export const App = () => {
-  return (
-    <DB >
+    return (
+        <DB>
 
-      < Global >
+            <Global>
 
-        <Content />
+                <Content/>
 
-      </Global>
+            </Global>
 
-    </DB>
-  );
+        </DB>
+    );
 }
