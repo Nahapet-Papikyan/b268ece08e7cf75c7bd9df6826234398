@@ -38,7 +38,7 @@ let initState = {
 }
 export const Global = ({children}) => {
     const [state, dispatch] = useReducer(globalReducer, initState)
-    const {getData, setData} = useContext(DbContext)
+    const {getData} = useContext(DbContext)
 
     useEffect(() => {
         checkUser()
