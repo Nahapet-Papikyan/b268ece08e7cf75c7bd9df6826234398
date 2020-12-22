@@ -3,27 +3,35 @@ import {DbContext} from "./dbContext"
 import {APIUrl} from "./url"
 
 import {getKey} from "./key";
-import {ANTOUBYI, GPDBUIAAPI, GUDBIOLP} from "../type";
+import {CAI, CAP} from "../type";
 
 
 export const DB = ({children}) => {
     const Actions = {
-        [GUDBIOLP]: (args) => ({
+        [CAP]: (args) => ({
             url: APIUrl,
             method: "POST",
             body: JSON.stringify({
                 args,
-                action: GUDBIOLP
+                action: CAP
             }),
         }),
-        [ANTOUBYI]: (args) => ({
+        [CAI]: (args) => ({
             url: APIUrl,
             method: "POST",
             body: JSON.stringify({
                 args,
-                action: ANTOUBYI,
+                action: CAI
             }),
         }),
+        // [ANTOUBYI]: (args) => ({
+        //     url: APIUrl,
+        //     method: "POST",
+        //     body: JSON.stringify({
+        //         args,
+        //         action: ANTOUBYI,
+        //     }),
+        // }),
 
 
     }

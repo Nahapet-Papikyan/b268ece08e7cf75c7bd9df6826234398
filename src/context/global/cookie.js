@@ -1,5 +1,3 @@
-import {dbAPIUrl} from "../db/url";
-import {getKey} from "../db/key";
 
 let sha1 = require('js-sha1');
 const decodeLang = "bd66cf202332c08a9f68",

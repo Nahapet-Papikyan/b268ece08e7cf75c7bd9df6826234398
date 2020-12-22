@@ -7,16 +7,16 @@ import loginBackgroundImage from '../assets/media/svg/login-visual-2.svg'
 import { GlobalContext } from '../context/global/globalContext'
 
 export const Login = () => {
-	// let {log} = useContext(GlobalContext)
+	let {log} = useContext(GlobalContext)
 
 	let [state, setState] = useState({userName: '', password: ''})
 	let [err, setErr] = useState(false)
-  const log =  {
-		in: data => {
-			console.log(data);
-			return true
-		},
-	}
+  // const log =  {
+	// 	in: data => {
+	// 		console.log(data);
+	// 		return true
+	// 	},
+	// }
   return (
     <div className="d-flex flex-column flex-root">
 			<div className="login login-2 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white">
@@ -35,7 +35,7 @@ export const Login = () => {
                       <label className="font-size-h6 font-weight-bolder text-dark">Login</label>
                     </div>
 										<input className={`form-control form-control-solid h-auto py-7 px-6 rounded-lg ${err && 'is-invalid'}`}
-											type="text" value={state.userName} onChange={e => setState({...state, userName: e.target.value})}
+											type="text" value={state.userName} onChange={e => setState({...state, userName: e.target.value.toLowerCase()})}
 											/>
 									<div className="fv-plugins-message-container"></div>
                   </div>
@@ -51,7 +51,7 @@ export const Login = () => {
                   </div>
 
 									<div className="text-center pt-2">
-										<button onClick={() => setErr(log.in(state)) }
+										<button onClick={() => log.in(state,setErr) }
 											className="btn btn-dark font-weight-bolder font-size-h6 px-8 py-4 my-3">Sign In</button>
 									</div>
 								<div></div>
