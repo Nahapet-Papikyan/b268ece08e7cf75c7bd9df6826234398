@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { Save } from './components/save';
-import { Navbar } from './navbar';
-import { Blogs } from './pages/blogs';
-import { Orders } from './pages/orders';
+import { Navbar } from './navbar'
+import { Blogs } from './pages/blogs'
+import { Orders } from './pages/orders'
+import { Loading } from './components/loading'
 import '../style/style.bundle.css'
 import '../style/aside/dark.css'
 import '../style/custom.style.css'
 
 const initState = {
-  activePageId: 0,
+  activePageId: -1,
   isHaveChanges: true
 };
 
@@ -23,7 +23,7 @@ const Pages = [
   }
 ]
 export const Content = () => {
-  let [state, setState] = useState(initState);
+  let [state, setState] = useState(initState)
 
 
 
@@ -41,6 +41,7 @@ export const Content = () => {
 
   return (
     <div className="d-flex flex-column flex-root">
+      <Loading />
       <div className="d-flex flex-row flex-column-fluid page" >
         <Navbar callBack = {changeActivePage} pages = {Pages} activePage = {state.activePageId} />
         <div className="d-flex flex-column flex-row-fluid wrapper">

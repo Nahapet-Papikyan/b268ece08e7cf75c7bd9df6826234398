@@ -1,23 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { GlobalContext } from '../../context/global/globalContext'
 import { NewOrderElement } from '../components/newOrderElement'
 import { OrderElement } from '../components/orderElement'
 import { Save } from '../components/save'
+import orderImg from '../../assets/ikon3.jpg'
 
 const getData = () => [
   {
     id: 0,
     name: 'brushatka',
     price: '250',
+    img: orderImg
   },
   {
     id: 1,
     name: 'brushatka dishovi',
     price: '150',
+    img: orderImg
   },
   {
     id: 2,
     name: 'brushatka ne dishovi',
     price: '450',
+    img: orderImg
+  },
+  {
+    id: 3,
+    name: 'brushatka ne dishovi',
+    price: '450',
+    img: orderImg
   }
 ]
 
@@ -25,13 +36,16 @@ let oldData = []
 export const Orders = ({isHaveChanges}) => {
   let [state, setState] = useState([])
   let [status, setStatus] = useState([])
+  let {loading} = useContext(GlobalContext)
 
   useEffect(() => {
+    loading.start()
     // getting data for state
     let res = getData()
     setState(res)
     setStatus(res.map(_ => 1))
     oldData = JSON.parse(JSON.stringify(res))
+    setTimeout(() => {loading.end()}, 2000);
   }, [])
 
   const callBacks = {
@@ -44,12 +58,12 @@ export const Orders = ({isHaveChanges}) => {
   }
 
   return (
-    <>
+    <div className="row mb-7">
       {/* <Save isHaveChanges = {isHaveChanges} callBack = {() => {}}/> */}
       <NewOrderElement callBack = {() => {}} />
       {
         state.map((item, i) => <OrderElement key = {item.id} order = {item} status = {status[i]} callBacks = {callBacks}/>)
       }
-    </>
+    </div>
   )
 }

@@ -5,8 +5,37 @@
   -o-transition: all .4s;
 }
 
+.bg-img {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.ctrl {
+  opacity: 0;
+  transition: all .5s;
+}
+.card {
+  overflow: hidden;
+}
+
+.card-order-element:hover .bg-img {
+  filter: blur(3px);
+}
+.card-order-element:hover .ctrl {
+  opacity: 1;
+  background: #909090cd;
+  flex-basis: 100%;
+}
+
 @media (max-width: 991.98px) {
   .aside {
     left: 0
+  }
+  .brand {
+    display: flex;
+  }
+  .wrapper {
+    padding-left: 70px;
   }
 }
