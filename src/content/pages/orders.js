@@ -24,16 +24,20 @@ const getData = () => [
 
 let oldData = []
 export const Orders = ( ) => {
-  let {  content } = useContext(ContentContext)
+  let {  content,get } = useContext(ContentContext)
   let [state, setState] = useState([])
   let [status, setStatus] = useState([])
 
   useEffect(() => {
     // getting data for state
-    let res = getData()
-    setState(res)
-    setStatus(res.map(_ => 1))
-    oldData = JSON.parse(JSON.stringify(res))
+    get("data",res=>{
+      console.log(res)
+      setState(res)
+      setStatus(res.map(_ => 1))
+      oldData = JSON.parse(JSON.stringify(res))
+    })
+
+
   }, [])
 
   const callBacks = {

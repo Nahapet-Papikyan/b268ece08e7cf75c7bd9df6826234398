@@ -3,7 +3,7 @@ import {DbContext} from "./dbContext"
 import {APIUrl} from "./url"
 
 import {getKey} from "./key";
-import {CAI, CAP} from "../type";
+import {CAI, CAP, GABT} from "../type";
 
 
 export const DB = ({children}) => {
@@ -22,6 +22,14 @@ export const DB = ({children}) => {
             body: JSON.stringify({
                 args,
                 action: CAI
+            }),
+        }),
+        [GABT]: (args) => ({
+            url: APIUrl,
+            method: "POST",
+            body: JSON.stringify({
+                args,
+                action: GABT
             }),
         }),
         // [ANTOUBYI]: (args) => ({

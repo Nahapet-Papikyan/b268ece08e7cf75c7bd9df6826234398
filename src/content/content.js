@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Save } from './components/save';
 import { Navbar } from './navbar';
 import { Blogs } from './pages/blogs';
@@ -7,6 +7,7 @@ import '../style/style.bundle.css'
 import '../style/aside/dark.css'
 import '../style/custom.style.css'
 import {ContentContext} from "./contentContext";
+import {DbContext} from "../context/db/dbContext";
 
 const initState = {
   activePageId: 0,
@@ -25,7 +26,7 @@ const Pages = [
 ]
 export const Content = () => {
   let [state, setState] = useState(initState);
-
+  let {getData,setData} =  useContext(DbContext);
 
 
   const changeActivePage = activePageId => {
@@ -40,8 +41,12 @@ export const Content = () => {
     }
   }
 
+  const get = (type,callBack) =>  getData("GABT",res=>callBack(res),()=>{},{type})
+
+  // order == "data" ||| blog="blog"
+  // get("data")
   return (
-      <ContentContext.Provider value={{content:state,pages:Pages,changeActivePage }}>
+      <ContentContext.Provider value={{content:state,pages:Pages,changeActivePage,get }}>
     <div className="d-flex flex-column flex-root">
       <div className="d-flex flex-row flex-column-fluid page" >
         <Navbar />
