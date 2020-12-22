@@ -6,6 +6,7 @@ import { Orders } from './pages/orders';
 import '../style/style.bundle.css'
 import '../style/aside/dark.css'
 import '../style/custom.style.css'
+import {ContentContext} from "./contentContext";
 
 const initState = {
   activePageId: 0,
@@ -40,24 +41,26 @@ export const Content = () => {
   }
 
   return (
+      <ContentContext.Provider value={{content:state,pages:Pages,changeActivePage }}>
     <div className="d-flex flex-column flex-root">
       <div className="d-flex flex-row flex-column-fluid page" >
-        <Navbar callBack = {changeActivePage} pages = {Pages} activePage = {state.activePageId} />
+        <Navbar />
         <div className="d-flex flex-column flex-row-fluid wrapper">
           <div className="content d-flex flex-column flex-column-fluid" >
             <div className="d-flex flex-column-fluid">
               <div className="container">
                 {
-                  state.activePageId === 0 && <Orders isHaveChanges = {state.isHaveChanges} />
+                  state.activePageId === 0 && <Orders  />
                 }
                 {
-                  state.activePageId === 1 && <Blogs isHaveChanges = {state.isHaveChanges} />
+                  state.activePageId === 1 && <Blogs />
                 }
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div> 
+    </div>
+      </ContentContext.Provider>
   )
 }

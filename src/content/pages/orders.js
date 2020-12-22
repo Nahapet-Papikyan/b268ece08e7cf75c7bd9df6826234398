@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { NewOrderElement } from '../components/newOrderElement'
 import { OrderElement } from '../components/orderElement'
 import { Save } from '../components/save'
+import {ContentContext} from "../contentContext";
 
 const getData = () => [
   {
@@ -22,7 +23,8 @@ const getData = () => [
 ]
 
 let oldData = []
-export const Orders = ({isHaveChanges}) => {
+export const Orders = ( ) => {
+  let {  content } = useContext(ContentContext)
   let [state, setState] = useState([])
   let [status, setStatus] = useState([])
 
