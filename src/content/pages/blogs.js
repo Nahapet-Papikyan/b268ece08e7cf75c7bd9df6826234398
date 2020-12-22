@@ -1,7 +1,7 @@
 import React from 'react'
 import { Save } from "../components/save";
 
-export const Blogs = ({isHaveChanges}) => {
+export const Blogs = ( ) => {
   return (
     <>
       <p>Blogs</p>

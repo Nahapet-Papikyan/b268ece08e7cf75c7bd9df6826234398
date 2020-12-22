@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { GlobalContext } from '../../context/global/globalContext'
+import React, {useContext, useEffect, useState} from 'react'
 import { NewOrderElement } from '../components/newOrderElement'
 import { OrderElement } from '../components/orderElement'
 import { Save } from '../components/save'
-import orderImg from '../../assets/ikon3.jpg'
+import {ContentContext} from "../contentContext";
+
 
 const getData = () => [
   {
@@ -33,7 +33,8 @@ const getData = () => [
 ]
 
 let oldData = []
-export const Orders = ({isHaveChanges}) => {
+export const Orders = ( ) => {
+  let {  content } = useContext(ContentContext)
   let [state, setState] = useState([])
   let [status, setStatus] = useState([])
   let {loading} = useContext(GlobalContext)

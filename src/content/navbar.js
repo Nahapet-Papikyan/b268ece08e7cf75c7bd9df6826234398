@@ -1,11 +1,13 @@
 import React, { useContext, useState } from 'react'
 import { GlobalContext } from '../context/global/globalContext'
+import {ContentContext} from "./contentContext";
 
 
 
 
-export const Navbar = ({ pages, activePage, callBack }) => {
+export const Navbar = () => {
 	let {log} = useContext(GlobalContext)
+  let { pages, content, changeActivePage  } = useContext(ContentContext)
   let [fullNavbar, setFullNavbar] = useState(true)
 
 
@@ -51,8 +53,8 @@ export const Navbar = ({ pages, activePage, callBack }) => {
             {
               pages.map(page => 
               <li className="menu-item" key={page.id} >
-                <button className={`menu-link bg-dark-o-40 bg-hover-gray-800 border-0 menu-link ${activePage === page.id && 'bg-gray-800'}`}
-                  onClick={() => callBack(page.id)}>
+                <button className={`menu-link bg-dark-o-40 bg-hover-gray-800 border-0 menu-link ${content.activePageId === page.id && 'bg-gray-800'}`}
+                  onClick={() => changeActivePage (page.id)}>
                   <span className="menu-text">{page.name}</span>
                 </button>              
               </li>
