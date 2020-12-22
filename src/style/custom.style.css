@@ -1,0 +1,12 @@
+.animate-all {
+  transition: all .4s;
+  -moz-transition: all .4s;
+  -webkit-transition: all .4s;
+  -o-transition: all .4s;
+}
+
+@media (max-width: 991.98px) {
+  .aside {
+    left: 0
+  }
+}

@@ -45,7 +45,7 @@ export const Orders = ({isHaveChanges}) => {
 
   return (
     <>
-      <Save isHaveChanges = {isHaveChanges} callBack = {() => {}}/>
+      {/* <Save isHaveChanges = {isHaveChanges} callBack = {() => {}}/> */}
       <NewOrderElement callBack = {() => {}} />
       {
         state.map((item, i) => <OrderElement key = {item.id} order = {item} status = {status[i]} callBacks = {callBacks}/>)

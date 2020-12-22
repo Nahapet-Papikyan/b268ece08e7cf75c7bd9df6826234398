@@ -5,7 +5,7 @@ export const Blogs = ({isHaveChanges}) => {
   return (
     <>
       <p>Blogs</p>
-      <Save isHaveChanges = {isHaveChanges} callBack = {() => {}} />
+      {/* <Save isHaveChanges = {isHaveChanges} callBack = {() => {}} /> */}
     </>
   )
 }
