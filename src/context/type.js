@@ -9,6 +9,9 @@ export const COMPLETE  = "COMPLETE"
 export const ACTIVE_FILTER  = "ACTIVE_FILTER"
 
 
-export const GUDBIOLP = "GUDBIOLP"
-export const GPDBUIAAPI = "GPDBUIAAPI"
-export const ANTOUBYI = "ANTOUBYI"
+export const GABT = "GABT"
+export const CNI = "CNI"
+export const UIBIAD = "UIBIAD"
+export const RIBI = "RIBI"
+export const CAP = "CAP"
+export const CAI = "CAI"
