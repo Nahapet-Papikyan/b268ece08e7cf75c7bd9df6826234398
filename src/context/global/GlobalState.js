@@ -21,7 +21,7 @@ import {DbContext} from "../db/dbContext"
 let initState = {
     user: {
         id: -1,
-        status: true
+        status: false
     },
     sizes: {
         w: window.innerWidth,

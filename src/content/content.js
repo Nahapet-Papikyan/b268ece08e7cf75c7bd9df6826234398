@@ -3,6 +3,10 @@ import { Save } from './components/save';
 import { Navbar } from './navbar';
 import { Blogs } from './pages/blogs';
 import { Orders } from './pages/orders';
+import {} from '../style/style.bundle.css'
+import {} from '../style/style.bundle.min.css'
+import {} from '../style/style.bundle.rtl.css'
+import {} from '../style/style.bundle.rtl.min.css'
 
 const initState = {
   activePageId: 0,
