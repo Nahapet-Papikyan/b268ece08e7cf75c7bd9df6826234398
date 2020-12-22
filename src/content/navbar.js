@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { GlobalContext } from '../context/global/globalContext'
+
 
 
 
 export const Navbar = ({ pages, activePage, callBack }) => {
-
+	let {log} = useContext(GlobalContext)
   let [fullNavbar, setFullNavbar] = useState(true)
 
 
