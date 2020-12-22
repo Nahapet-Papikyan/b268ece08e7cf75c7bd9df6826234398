@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import React, { useState, useContext } from 'react'
 import { Save } from './components/save';
 import { Navbar } from './navbar';
 import { Blogs } from './pages/blogs';
 import { Orders } from './pages/orders';
+=======
+import React, { useState } from 'react'
+import { Navbar } from './navbar'
+import { Blogs } from './pages/blogs'
+import { Orders } from './pages/orders'
+import { Loading } from './components/loading'
+>>>>>>> 22a8b665fa65c3ed03eb1528bc07935a6bbc7449
 import '../style/style.bundle.css'
 import '../style/aside/dark.css'
 import '../style/custom.style.css'
@@ -10,7 +18,7 @@ import {ContentContext} from "./contentContext";
 import {DbContext} from "../context/db/dbContext";
 
 const initState = {
-  activePageId: 0,
+  activePageId: -1,
   isHaveChanges: true
 };
 
@@ -25,8 +33,13 @@ const Pages = [
   }
 ]
 export const Content = () => {
+<<<<<<< HEAD
   let [state, setState] = useState(initState);
   let {getData,setData} =  useContext(DbContext);
+=======
+  let [state, setState] = useState(initState)
+
+>>>>>>> 22a8b665fa65c3ed03eb1528bc07935a6bbc7449
 
 
   const changeActivePage = activePageId => {
@@ -48,6 +61,7 @@ export const Content = () => {
   return (
       <ContentContext.Provider value={{content:state,pages:Pages,changeActivePage,get }}>
     <div className="d-flex flex-column flex-root">
+      <Loading />
       <div className="d-flex flex-row flex-column-fluid page" >
         <Navbar />
         <div className="d-flex flex-column flex-row-fluid wrapper">
