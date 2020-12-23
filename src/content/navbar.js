@@ -8,7 +8,7 @@ import {ContentContext} from "./contentContext";
 export const Navbar = () => {
 	let {log} = useContext(GlobalContext)
   let { pages, content, changeActivePage  } = useContext(ContentContext)
-  let [fullNavbar, setFullNavbar] = useState(true)
+  let [fullNavbar, setFullNavbar] = useState(false)
 
 
   return (
@@ -49,6 +49,7 @@ export const Navbar = () => {
 
       <div className="aside-menu-wrapper flex-column-fluid">
         <div className="aside-menu my-4 scroll ps ps--active-y" >
+
           <ul className="menu-nav">
             {
               pages.map(page => 
@@ -59,10 +60,11 @@ export const Navbar = () => {
                 </button>              
               </li>
               )
-            }     
+            }    
             <li className="menu-item" >
               <button className="menu-link bg-dark-o-40 bg-hover-gray-800 border-0 menu-link"
-              onClick={() => log.out()}>
+                style={{marginTop: '60vh'}}
+                onClick={() => log.out()}>
                 <span className="menu-text">Logout</span>
               </button>              
             </li>

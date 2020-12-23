@@ -39,7 +39,7 @@ export const Orders = ( ) => {
   }
 
   return (
-    <div className="row mb-7">
+    <div className="row mb-7 justify-content-center">
       {/* <Save isHaveChanges = {isHaveChanges} callBack = {() => {}}/> */}
       <NewOrderElement callBack = {() => {}} />
       {
