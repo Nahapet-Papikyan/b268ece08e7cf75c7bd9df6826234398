@@ -1,17 +1,10 @@
-import React, {useContext, useEffect, useReducer, useState} from "react"
+import React, {useContext, useEffect, useReducer} from "react"
 import {globalReducer} from "./globalReducer"
 import {GlobalContext} from "./globalContext"
 import {user} from "./cookie"
 import {
-    ACTIVE_FILTER,
-    ANTOUBYI, CAI, CAP, COMPLETE, DESCRIPTION,
-    GPDBUIAAPI,
-    GUDBIOLP,
-    NEW_TASK,
-    PAGE_SIZE,
-    SET_ACTIVE_PAGE,
+ CAI, CAP,
     SET_LOADING, SET_POPUP,
-    SET_TASKS,
     SET_USER
 } from "../type"
 import {Login} from "../../content/login"
@@ -36,7 +29,7 @@ export const Global = ({children}) => {
 
     useEffect(() => {
         checkUser()
-
+// eslint-disable-next-line
     }, [])
 
     const checkUser = () => {

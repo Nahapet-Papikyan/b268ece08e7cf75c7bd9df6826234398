@@ -1,37 +1,5 @@
 
 let sha1 = require('js-sha1');
-const decodeLang = "bd66cf202332c08a9f68",
-    decodeLangIds = ["b5b1a6435c", "a8e5fbb28a", "85b99065df"]
-
-
-export const language = {
-    set: async (lang) => {
-        let d = new Date();
-        d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000))
-        let expires = "expires=" + d.toUTCString()
-        document.cookie = `${decodeLang}=${decodeLangIds[lang]}; ${expires} ;path=/`
-        return Promise.resolve(lang)
-    },
-    get: async () => {
-        let res = -1;
-        decodeURIComponent(document.cookie)
-            .split('; ')
-            .map(c => {
-                let [name, val] = c.split("=")
-                if (name === decodeLang) {
-                    // console.log(name, decodeLangIds.indexOf(val))
-                    res = decodeLangIds.indexOf(val);
-
-                }
-                return 0;
-            })
-        if (res < 0) {
-            language.set(0)
-            res = 0
-        }
-        return Promise.resolve(res)
-    }
-}
 export const user = {
     set: id => {
         let d = new Date();

@@ -14,26 +14,13 @@ let restoreBtnStyle = {
   fontSize: '25px'
 }
 
-export const CTRL = ({status, callBacks}) => {
+export const CTRL = ({ ctrlId, callBacks}) =>  <div className="h-100 position-absolute w-100 zindex-1 ctrl" >
 
-  return (
-    <div className="h-100 position-absolute w-100 zindex-1 ctrl" >
-      {
-        status
-        ? <> 
-            <button className="bg-dark-o-40 bg-hover-gray-800 border-0 "  >
+            <button onClick={()=>callBacks.edit(ctrlId)} className="bg-dark-o-40 bg-hover-gray-800 border-0 "  >
               <i className="far fa-edit" style={editBtnStyle} />
             </button>
-            <button className="bg-dark-o-40 bg-hover-gray-800 border-0" >
+            <button onClick={()=>callBacks.remove(ctrlId)} className="bg-dark-o-40 bg-hover-gray-800 border-0" >
               <i className="far fa-trash-alt" style={deleteBtnStyle} />
             </button>
-          </>
-        : <>
-            <button className="bg-dark-o-40 bg-hover-gray-800 border-0">
-              <i className="far fa-trash-undo-alt" style={restoreBtnStyle} />
-            </button>
-          </>
-      }
+
     </div>
-  )
-}
