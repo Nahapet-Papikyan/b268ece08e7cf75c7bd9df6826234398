@@ -10,7 +10,7 @@ import {
     NEW_TASK,
     PAGE_SIZE,
     SET_ACTIVE_PAGE,
-    SET_LOADING,
+    SET_LOADING, SET_POPUP,
     SET_TASKS,
     SET_USER
 } from "../type"
@@ -25,16 +25,10 @@ let initState = {
         status: false
     },
     loading: false,
-    newTask: {type: 1, parent: 3},
-    tasks: [],
-    description:
-        {
-            data: "",
-            id: -1,
-            status: false
-        },
-    filters: ["default", "All", "for today", "for last 3 days", "only ready", "removed"],
-    activeFilter: 0,
+    popup:{
+        status:true,
+        data:{}
+    }
 }
 export const Global = ({children}) => {
     const [state, dispatch] = useReducer(globalReducer, initState)
@@ -72,6 +66,11 @@ export const Global = ({children}) => {
         end: () => dispatch({type: SET_LOADING, loading: false})
     }
 
+    const popup = {
+        open: (type,data)=>dispatch({type:SET_POPUP,popup:{status:true,type,data}}),
+        close: ()=>dispatch({type:SET_POPUP,popup:{status:true,data:{}}})
+    }
+
     const log = {
         in: ({userName, password}, callBack) => {
             if (userName.length > 5 && userName === userName.replace(/\s/g, "") && password.length > 7 && password === password.replace(/\s/g, "")) {
@@ -106,6 +105,7 @@ export const Global = ({children}) => {
             value={{
                 global: state,
                 loading,
+                popup,
                 log,
             }}>
             {state.user.status ? children : <Login/>}

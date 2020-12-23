@@ -32,14 +32,6 @@ export const DB = ({children}) => {
                 action: GABT
             }),
         }),
-        // [ANTOUBYI]: (args) => ({
-        //     url: APIUrl,
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         args,
-        //         action: ANTOUBYI,
-        //     }),
-        // }),
 
 
     }

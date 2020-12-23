@@ -1,25 +1,20 @@
-<<<<<<< HEAD
-import React, { useState, useContext } from 'react'
-import { Save } from './components/save';
-import { Navbar } from './navbar';
-import { Blogs } from './pages/blogs';
-import { Orders } from './pages/orders';
-=======
-import React, { useState } from 'react'
+
+import React, { useState ,useContext} from 'react'
 import { Navbar } from './navbar'
 import { Blogs } from './pages/blogs'
 import { Orders } from './pages/orders'
 import { Loading } from './components/loading'
->>>>>>> 22a8b665fa65c3ed03eb1528bc07935a6bbc7449
+
 import '../style/style.bundle.css'
 import '../style/aside/dark.css'
 import '../style/custom.style.css'
 import {ContentContext} from "./contentContext";
 import {DbContext} from "../context/db/dbContext";
 
+
 const initState = {
   activePageId: -1,
-  isHaveChanges: true
+  isHaveChanges: false
 };
 
 const Pages = [ 
@@ -33,13 +28,10 @@ const Pages = [
   }
 ]
 export const Content = () => {
-<<<<<<< HEAD
+
   let [state, setState] = useState(initState);
   let {getData,setData} =  useContext(DbContext);
-=======
-  let [state, setState] = useState(initState)
 
->>>>>>> 22a8b665fa65c3ed03eb1528bc07935a6bbc7449
 
 
   const changeActivePage = activePageId => {

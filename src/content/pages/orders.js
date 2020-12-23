@@ -5,59 +5,28 @@ import { Save } from '../components/save'
 import {ContentContext} from "../contentContext";
 
 
-const getData = () => [
-  {
-    id: 0,
-    name: 'brushatka',
-    price: '250',
-    img: orderImg
-  },
-  {
-    id: 1,
-    name: 'brushatka dishovi',
-    price: '150',
-    img: orderImg
-  },
-  {
-    id: 2,
-    name: 'brushatka ne dishovi',
-    price: '450',
-    img: orderImg
-  },
-  {
-    id: 3,
-    name: 'brushatka ne dishovi',
-    price: '450',
-    img: orderImg
-  }
-]
+import orderImg from "../../assets/ikon3.jpg"
+import {GlobalContext} from "../../context/global/globalContext";
 
 let oldData = []
+let newItem = {}
 export const Orders = ( ) => {
-  let {  content,get } = useContext(ContentContext)
+  let {  content,get,re,open } = useContext(ContentContext)
   let [state, setState] = useState([])
   let [status, setStatus] = useState([])
   let {loading} = useContext(GlobalContext)
 
   useEffect(() => {
     loading.start()
-    // getting data for state
-<<<<<<< HEAD
     get("data",res=>{
       console.log(res)
       setState(res)
       setStatus(res.map(_ => 1))
       oldData = JSON.parse(JSON.stringify(res))
+      setTimeout(()=>loading.end(),1000)
     })
 
 
-=======
-    let res = getData()
-    setState(res)
-    setStatus(res.map(_ => 1))
-    oldData = JSON.parse(JSON.stringify(res))
-    setTimeout(() => {loading.end()}, 2000);
->>>>>>> 22a8b665fa65c3ed03eb1528bc07935a6bbc7449
   }, [])
 
   const callBacks = {
