@@ -3,7 +3,7 @@ import {DbContext} from "./dbContext"
 import {APIUrl} from "./url"
 
 import {getKey} from "./key";
-import {CAI, CAP, GABT} from "../type";
+import {CAI, CAP, GABT, RIBI} from "../type";
 
 
 export const DB = ({children}) => {
@@ -30,6 +30,14 @@ export const DB = ({children}) => {
             body: JSON.stringify({
                 args,
                 action: GABT
+            }),
+        }),
+[RIBI]: (args) => ({
+            url: APIUrl,
+            method: "POST",
+            body: JSON.stringify({
+                args,
+                action: RIBI
             }),
         }),
 
@@ -71,8 +79,8 @@ export const DB = ({children}) => {
     }
     const getData = (type, callBack, ErrorCallBack, args = {}) =>
         get({...Actions[type](args), callBack, ErrorCallBack})
-    const setData = (id, type, callBack, ErrorCallBack, args = {}) =>
-        get({...Actions[type](args), callBack, ErrorCallBack, id})
+    const setData = (type, callBack, ErrorCallBack, args = {}) =>
+        get({...Actions[type](args), callBack, ErrorCallBack})
 
     return (
         <DbContext.Provider value={{getData, setData}}>
