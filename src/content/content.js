@@ -10,12 +10,12 @@ import '../style/aside/dark.css'
 import '../style/custom.style.css'
 import {ContentContext} from "./contentContext";
 import {DbContext} from "../context/db/dbContext";
-import {GABT} from "../context/type";
+import {GABT, RIBI} from "../context/type";
 import {GlobalContext} from "../context/global/globalContext";
 
 
 const initState = {
-  activePageId: -1,
+  activePageId: 0,
   isHaveChanges: false
 };
 
@@ -52,10 +52,15 @@ export const Content = () => {
   const get = (type,callBack) =>  getData(GABT,res=>callBack(res),()=>{},{type})
 
   const newItem = data =>{}
-  const editItem = data =>{
-    console.log()
+  const editItem = (type,id,data,callBack) =>{
+    openPopup({type,id,data,callBack})
+    console.log(type,id,data,callBack)
   }
-  const removeItem = id =>{
+  const removeItem = (type, id, callBack )=>{
+
+    setData(RIBI,res=>{
+      if(res)callBack(id)
+    },()=>{},{type,id})
     console.log(id)
   }
 

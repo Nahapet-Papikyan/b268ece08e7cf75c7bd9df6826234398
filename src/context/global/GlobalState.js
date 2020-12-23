@@ -60,7 +60,7 @@ export const Global = ({children}) => {
     }
 
     const popup = {
-        open: (type,data)=>dispatch({type:SET_POPUP,popup:{status:true,type,data}}),
+        open:  data=>dispatch({type:SET_POPUP,popup:{...data,status:true }}),
         close: ()=>dispatch({type:SET_POPUP,popup:{status:true,data:{}}})
     }
 
@@ -92,6 +92,7 @@ export const Global = ({children}) => {
         }
     }
 
+    console.log(state)
 
     return (
         <GlobalContext.Provider
