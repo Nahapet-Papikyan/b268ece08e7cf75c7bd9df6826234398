@@ -56,12 +56,14 @@ export const Content = () => {
     openPopup({type,id,data,callBack})
     console.log(type,id,data,callBack)
   }
-  const removeItem = (type, id, callBack )=>{
-
-    setData(RIBI,res=>{
-      if(res)callBack(id)
-    },()=>{},{type,id})
-    console.log(id)
+  const removeItem = (type, id, callBack )=> {
+    if (window.confirm('вы точно хотите удалить продукт \nудалены продукт невозможно вернуть ')) {
+      setData(RIBI, res => {
+        if (res) callBack(id)
+      }, () => {
+      }, {type, id})
+      console.log(id)
+    }
   }
 
 
