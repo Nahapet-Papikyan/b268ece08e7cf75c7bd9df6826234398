@@ -4,8 +4,6 @@ import {OrderElement} from '../components/orderElement'
 import {ContentContext} from "../contentContext";
 import {GlobalContext} from "../../context/global/globalContext";
 
-let oldData = []
-
 let newItem = {
     id: "",
 
@@ -58,7 +56,7 @@ export const Orders = () => {
     }
 
     return (
-        <div className="row mb-7">
+        <div className="row mb-7  justify-content-center">
             <NewOrderElement callBack={()=>editItem(type,newItem,editItem)}/>
             {
                 state.map((item, i) => <OrderElement key={item.id} order={item} ctrlId={i} callBacks={callBacks}/>).reverse()

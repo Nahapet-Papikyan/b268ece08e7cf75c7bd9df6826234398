@@ -80,22 +80,18 @@ export const Content = () => {
       <ContentContext.Provider value={{content:state,pages:Pages,changeActivePage,get,newItem,
         editItem,openPopup,closePopup,
         removeItem, }}>
-    <div className="d-flex flex-column flex-root">
+    <div className="d-flex flex-column flex-root heigth-100vh overflow-hidden">
       <Loading />
       <div className="d-flex flex-row flex-column-fluid page" >
         <Navbar />
-        <div className="d-flex flex-column flex-row-fluid wrapper">
-          <div className="content d-flex flex-column flex-column-fluid" >
-            <div className="d-flex flex-column-fluid">
-              <div className="container">
-                {
-                  state.activePageId === 0 && <Orders  />
-                }
-                {
-                  state.activePageId === 1 && <Blogs />
-                }
-              </div>
-            </div>
+        <div className="d-flex flex-column flex-row-fluid heigth-100vh overflow-auto py-5 wrapper">
+          <div className="container mt-7">
+            {
+              state.activePageId === 0 && <Orders  />
+            }
+            {
+              state.activePageId === 1 && <Blogs />
+            }
           </div>
         </div>
       </div>
