@@ -19,8 +19,8 @@ let initState = {
     },
     loading: false,
     popup:{
-        status:true,
-        data:{}
+        status: false,
+        data: {}
     }
 }
 export const Global = ({children}) => {
@@ -61,7 +61,7 @@ export const Global = ({children}) => {
 
     const popup = {
         open:  data=>dispatch({type:SET_POPUP,popup:{...data,status:true }}),
-        close: ()=>dispatch({type:SET_POPUP,popup:{status:true,data:{}}})
+        close: ()=>dispatch({type:SET_POPUP,popup:{status:false,data:{}}})
     }
 
     const log = {
@@ -102,7 +102,7 @@ export const Global = ({children}) => {
                 popup,
                 log,
             }}>
-            {state.user.status ? children : <Login/>}
+            {state.user.status ? children : <Login /> }
         </GlobalContext.Provider>
     )
 }

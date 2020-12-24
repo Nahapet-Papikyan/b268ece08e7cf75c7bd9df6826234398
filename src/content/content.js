@@ -5,17 +5,19 @@ import { Blogs } from './pages/blogs'
 import { Orders } from './pages/orders'
 import { Loading } from './components/loading'
 
-import '../style/style.bundle.css'
-import '../style/aside/dark.css'
-import '../style/custom.style.css'
+import '../assets/style/style.bundle.css'
+import '../assets/style/aside/dark.css'
+import '../assets/style/custom.style.css'
+
 import {ContentContext} from "./contentContext";
 import {DbContext} from "../context/db/dbContext";
-import {GABT, RIBI} from "../context/type";
+import {CNI, GABT, RIBI, UIBIAD} from "../context/type";
 import {GlobalContext} from "../context/global/globalContext";
+import { Popup } from './popup'
 
 
 const initState = {
-  activePageId: 0,
+  activePageId: -1,
   isHaveChanges: false
 };
 
@@ -35,8 +37,6 @@ export const Content = () => {
   let {getData,setData} =  useContext(DbContext);
   let {popup} = useContext(GlobalContext)
 
-
-
   const changeActivePage = activePageId => {
     if(state.isHaveChanges) {
       let is = window.confirm('are you want to change page ? \n you have unsaved changes ');
@@ -49,19 +49,32 @@ export const Content = () => {
     }
   }
 
-  const get = (type,callBack) =>  getData(GABT,res=>callBack(res),()=>{},{type})
+  const get = (type, callBack) =>  getData(GABT,callBack,(err)=>{},{type})
 
-  const newItem = data =>{}
-  const editItem = (type,id,data,callBack) =>{
-    openPopup({type,id,data,callBack})
+  const newItem = data => {}
+
+  const editItem = (type, id, data, callBack) =>{
+    popup.open({type, id, data, callBack: (data, id) => {
+      const action = id === -1 ? CNI : UIBIAD
+      setData(action, res => {
+        if (res) {
+          callBack(data, id)
+          popup.close() 
+        }
+      }, () => {}, {...data, type})
+
+      console.log(id);
+    } })
     console.log(type,id,data,callBack)
   }
   const removeItem = (type, id, callBack )=>{
-
-    setData(RIBI,res=>{
-      if(res)callBack(id)
-    },()=>{},{type,id})
-    console.log(id)
+    if (window.confirm('вы точно хотите удалить продукт \nудалены продукт невозможно вернуть ')) {
+      setData(RIBI, res => {
+        if (res) callBack(id)
+      }, () => {
+      }, {type, id})
+      console.log(id)
+    }
   }
 
 
@@ -80,6 +93,7 @@ export const Content = () => {
         removeItem, }}>
     <div className="d-flex flex-column flex-root heigth-100vh overflow-hidden">
       <Loading />
+      <Popup />
       <div className="d-flex flex-row flex-column-fluid page" >
         <Navbar />
         <div className="d-flex flex-column flex-row-fluid heigth-100vh overflow-auto py-5 wrapper">

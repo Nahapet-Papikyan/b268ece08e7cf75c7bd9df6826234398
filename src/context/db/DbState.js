@@ -3,7 +3,7 @@ import {DbContext} from "./dbContext"
 import {APIUrl} from "./url"
 
 import {getKey} from "./key";
-import {CAI, CAP, GABT, RIBI} from "../type";
+import {CAI, CAP, CNI, GABT, RIBI, UIBIAD} from "../type";
 
 
 export const DB = ({children}) => {
@@ -32,7 +32,7 @@ export const DB = ({children}) => {
                 action: GABT
             }),
         }),
-[RIBI]: (args) => ({
+        [RIBI]: (args) => ({
             url: APIUrl,
             method: "POST",
             body: JSON.stringify({
@@ -40,8 +40,22 @@ export const DB = ({children}) => {
                 action: RIBI
             }),
         }),
-
-
+        [CNI]: (args) => ({
+            url: APIUrl,
+            method: "POST",
+            body: JSON.stringify({
+                args,
+                action: CNI
+            }),
+        }),
+        [UIBIAD]: (args) => ({
+            url: APIUrl,
+            method: "POST",
+            body: JSON.stringify({
+                args,
+                action: UIBIAD
+            }),
+        }),
     }
     const get = async ({url, method, body, callBack, ErrorCallBack, id = -1}) => {
 

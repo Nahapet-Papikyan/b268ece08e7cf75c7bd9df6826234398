@@ -5,6 +5,62 @@
   -o-transition: all .4s;
 }
 
+.add-image {
+  display: flex;
+  width: 100%;
+  height: 232px;
+  margin: 0 auto;
+  background-color: #575757;
+  border: solid 3px #9494947d;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 6px;
+  text-align: center;
+  align-items: center;
+  -webkit-transition: background-color .5s;
+   -moz-transition: background-color .5s;
+     -o-transition: background-color .5s;
+        transition: background-color .5s;
+  cursor: pointer;
+}
+.add-image i {
+  margin: 0 auto;
+  font-size: 80px;
+  color: #eee;
+  -webkit-transition: color .5s, font-size .5s;
+   -moz-transition: color .5s, font-size .5s;
+     -o-transition: color .5s, font-size .5s;
+        transition: color .5s, font-size .5s;
+}
+
+.add-image:hover {
+  background-color: #d3d3d383;
+}
+.add-image:hover i {
+  color: #535353;
+  font-size: 100px;
+}
+
+.add-image-item {
+  background-color: white;
+  color: white;
+  flex-wrap: wrap
+}
+.add-image-item  p {
+  width: 100%;
+  text-align: center;
+}
+
+.add-image-item:hover i {
+  color: #eee !important
+}
+
+.add-image-item:hover {
+  background-color: #535353 ;
+}
+.add-image-item 
+
 .heigth-100vh {
   height: 100vh !important;
   max-height: 100vh !important;
@@ -31,7 +87,7 @@
   height: 300px !important;
 }
 
-.card-order-element > .card-header {
+.card-order-element  .my-card-header {
   font-size: 16px ;
   height: 50px;
   line-height: 23px;
@@ -40,12 +96,12 @@
   text-align: center !important;
 }
 
-.card-header,.card-header * {
+.my-card-header,.my-card-header * {
   text-align:center;
   justify-content: center !important
 }
 
-.card-order-element > .card-header > h2{
+.card-order-element  .my-card-header  h2{
   font-size: 16px ;
   text-align: center !important;
 }
