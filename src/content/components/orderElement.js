@@ -1,6 +1,5 @@
 import React from 'react'
 import { CTRL } from './CTRL'
-
   const base_url = "http://bruschatka2000.ru/" 
 export const Element = ({ type, item, ctrlId, callBacks}) => {
 
