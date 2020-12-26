@@ -25,10 +25,13 @@ const Pages = [
   {
     id: 0,
     name: 'orders',
+    icon: <i className="fad fa-tire-rugged"/>
+    
   },
   {
     id: 1,
     name: 'blogs',
+    icon: <i className="fad fa-th-large"/>
   }
 ]
 export const Content = () => {
@@ -94,7 +97,7 @@ export const Content = () => {
     <div className="d-flex flex-column flex-root heigth-100vh overflow-hidden">
       <Loading />
       <Popup />
-      <div className="d-flex flex-row flex-column-fluid page" >
+      <div className="d-flex flex-row flex-column-fluid page d-flex flex-column-fluid flex-row overflow-hidden page " style={{height: '100vh !important'}}>
         <Navbar />
         <div className="d-flex flex-column flex-row-fluid heigth-100vh overflow-auto py-5 wrapper">
           <div className="container mt-7">

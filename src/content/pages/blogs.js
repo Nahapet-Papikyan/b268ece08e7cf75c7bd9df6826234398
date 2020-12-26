@@ -8,8 +8,9 @@ const type = "blog"
 
 let newItem = {
   id: "",
+  text: ''
 }
-
+// Nahapet start
 export const Blogs = () => {
 
   let { get, editItem, removeItem } = useContext(ContentContext)
@@ -28,7 +29,8 @@ export const Blogs = () => {
     return () => { setState([]) }
     // eslint-disable-next-line
   }, [])
-
+  // Nahapet end 
+  // Smbat start 
   const editCallBack = (data, ctrlId) => {
 
     let newState = [...state]
@@ -68,3 +70,4 @@ export const Blogs = () => {
     </div>
   )
 }
+  // Smbat end 

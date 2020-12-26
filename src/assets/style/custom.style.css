@@ -19,9 +19,9 @@
   text-align: center;
   align-items: center;
   -webkit-transition: background-color .5s;
-   -moz-transition: background-color .5s;
-     -o-transition: background-color .5s;
-        transition: background-color .5s;
+     -moz-transition: background-color .5s;
+       -o-transition: background-color .5s;
+          transition: background-color .5s;
   cursor: pointer;
 }
 .add-image i {
@@ -29,9 +29,9 @@
   font-size: 80px;
   color: #eee;
   -webkit-transition: color .5s, font-size .5s;
-   -moz-transition: color .5s, font-size .5s;
-     -o-transition: color .5s, font-size .5s;
-        transition: color .5s, font-size .5s;
+     -moz-transition: color .5s, font-size .5s;
+       -o-transition: color .5s, font-size .5s;
+          transition: color .5s, font-size .5s;
 }
 
 .add-image:hover {
@@ -157,10 +157,22 @@
   .aside {
     left: 0
   }
+  .add-image {
+    height: 217px;
+  }
+  .aside-minimize.brand {
+    justify-content: center;
+  }
   .brand {
-    display: flex;
+    display: flex !important;
   }
   .wrapper {
     padding-left: 70px;
   }
+}
+.aside-minimize .aside-menu .menu-nav > .menu-item > .menu-link .menu-text {
+    display: none;
+}
+.aside-minimize .brand {
+  justify-content: center !important;
 }

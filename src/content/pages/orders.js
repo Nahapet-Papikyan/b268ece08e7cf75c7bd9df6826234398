@@ -7,6 +7,7 @@ import { GlobalContext } from "../../context/global/globalContext";
 let newItem = {
   id: "",
   'h1-meta': '',
+  text: ''
 }
 
 const type = "data"
