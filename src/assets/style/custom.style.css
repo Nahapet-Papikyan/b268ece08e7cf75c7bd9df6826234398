@@ -157,10 +157,22 @@
   .aside {
     left: 0
   }
+  .add-image {
+    height: 217px;
+  }
+  .aside-minimize.brand {
+    justify-content: center;
+  }
   .brand {
-    display: flex;
+    display: flex !important;
   }
   .wrapper {
     padding-left: 70px;
   }
+}
+.aside-minimize .aside-menu .menu-nav > .menu-item > .menu-link .menu-text {
+    display: none;
+}
+.aside-minimize .brand {
+  justify-content: center !important;
 }

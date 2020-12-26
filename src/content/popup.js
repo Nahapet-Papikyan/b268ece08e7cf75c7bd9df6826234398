@@ -2,7 +2,52 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { GlobalContext } from '../context/global/globalContext';
 const parse = require('html-react-parser');
 
+const tags = [
+  {
+    id: 0, 
+    name: <i className="fal fa-h1" />,
+    tag: '<h1></h1>'
+  },
+  {
+    id: 1, 
+    name: <i className="fal fa-h2" />,
+    tag: '<h2></h2>'
+  },
+  {
+    id: 2, 
+    name: <i class="fad fa-paragraph"/>,
+    tag: '<p></p>'
+  },
+  {
+    id: 3, 
+    name: <i class="fad fa-image"/>,
+    tag: '<img  />'
+  }
 
+]
+
+const categories = [
+  {
+    id: 0,
+    name: 'gavno', 
+    used: false
+  },
+  {
+    id: 1,
+    name: 'gavno 1', 
+    used: false
+  },
+  {
+    id: 2,
+    name: 'gavno 2', 
+    used: false
+  },
+  {
+    id: 3,
+    name: 'gavno polni', 
+    used: false
+  }
+]
 
 
 export const Popup = (  ) => {  
@@ -10,7 +55,10 @@ export const Popup = (  ) => {
   
   let { global, popup } = useContext(GlobalContext)
   let [state, setState] = useState({})
+  let [showCategorys, setShowCategorys] = useState([false, false])
   let fileInput = useRef()
+  let textarea = useRef()
+
 
   let type = global.popup.type || ''
   let id = global.popup.id || ''
@@ -45,9 +93,12 @@ export const Popup = (  ) => {
     }
   }
 
+  const addTag = (value) => {
+    setState({...state, text: state.text.substring(0, textarea.current.selectionStart) + value + state.text.substring(textarea.current.selectionStart, state.text.length) })
+  }
 
   return (
-    <div style={{ zIndex: 10000, top: global.popup.status ? '0' : '-150%', left: '0',}} className="bg-dark-o-95 heigth-100vh position-fixed w-100 d-flex animate-all" >
+    <div style={{ zIndex: 1000000, top: global.popup.status ? '0' : '-150%', left: '0', bottom: global.popup.status ? '0' : '',}} className="bg-dark-o-95 heigth-100vh position-fixed w-100 d-flex animate-all" >
       {
         global.popup.status && 
 
@@ -100,22 +151,7 @@ export const Popup = (  ) => {
                           <input type="text" className="form-control" placeholder="Enter url" value={state.url} 
                             onChange={e => setState({ ...state, url: e.target.value })}/>
                         </div>
-
-                        <div className="form-group">
-                          <label>Category:</label>
-                          <input type="text" className="form-control" placeholder="Enter category" value={state.cat} 
-                            onChange={e => setState({ ...state, cat: e.target.value })}/>
-                        </div>
-                        { 
-                          type === "data" &&  
-                          <div className="form-group">
-                            <label>Category_1:</label>
-                            <input type="text" className="form-control" placeholder="Enter category_1" value={state.cat1} 
-                              onChange={e => setState({ ...state, cat1: e.target.value })}/>
-                          </div>
-                        }
                         
-
                         <div className="form-group">
                           <label>Meta_d:</label>
                           <input type="text" className="form-control" placeholder="Enter meta_d" value={state.meta_d} 
@@ -141,6 +177,37 @@ export const Popup = (  ) => {
                             <label>h1 :</label>
                             <input type="text" className="form-control" placeholder="Enter h1" value={state.h1} 
                               onChange={e => setState({ ...state, h1: e.target.value })}/>
+                          </div>
+                        }
+                         <div className="form-group">
+                          <label>Category: {state.cat ? (categories.find(item => item.id === state.cat)) ?  (categories.find(item => item.id === state.cat)).name : 'не выбрано' : 'не выбрано'}</label>
+
+                          <div>
+                            <button className="btn btn-primary" onClick={() => setShowCategorys([true, false])}>
+                              {state.cut || 'chosee category'}
+                            </button>
+                            <div className={` overflow-auto =`} style={{transition: 'all .5s', height: showCategorys[0] ? 'auto' : '0px'}}>
+                              {                                
+                                categories.map(item => state.cat1 !== item.id && <button key={item.id}  className={`btn btn-bg-success p-1 m-1 ${state.cat === item.id && 'active'}`} onClick={() => {setState({...state, cat: item.id }); setShowCategorys([false, false])}}> {item.name} </button>)
+                              }
+                            </div>
+                          </div>
+                          
+                        </div>
+                        { 
+                          type === "data" &&  
+                          <div className="form-group">
+                            <label>Category_1: {state.cat ? (categories.find(item => item.id === state.cat1)) ?  (categories.find(item => item.id === state.cat1)).name : 'не выбрано' : 'не выбрано'}</label>
+                            <div>
+                              <button className="btn btn-primary" onClick={() => setShowCategorys([false, true])}>
+                                {state.cut || 'chosee category'}
+                              </button>
+                              <div className={` overflow-auto `} style={{transition: 'all .5s', height: showCategorys[1] ? 'auto' : '0px'}}>
+                                {
+                                  categories.map(item => state.cat !== item.id && <button key={item.id} className={ ` btn btn-bg-success p-1 m-1 ${state.cat1 === item.id && 'active'}`} onClick={() => {setState({...state, cat1: item.id }); setShowCategorys([false, false])}}> {item.name} </button>)
+                                }
+                              </div>
+                            </div>
                           </div>
                         }
                       
@@ -196,7 +263,7 @@ export const Popup = (  ) => {
                         </div>
                         </>
                         }
-                                                {
+                        {
                           type === "blog" &&  
                           <div className="form-group">
                             <label>Description :</label>
@@ -216,20 +283,43 @@ export const Popup = (  ) => {
 
                       </div>
                     </div>
+                    
                     <div className="form-group row">
+                      
+                      <div className="col-6">
+                      <label>Text Input:</label>
+
+                        <div>
+                          {
+                            tags.map(item => <button className="bg-hover-warning-o-3 btn line-height-0 p-2 pl-4 text-center text-hover-primary " onClick={() => addTag(item.tag)} key={item.id}>{item.name}</button>)
+                          }
+
+                        </div>
+                      </div>
+
+                      <div className="col-6">
+                      <label>Text Output:</label>
+
+                      </div>
+
+                    </div>
+
+                    <div className="form-group row">
+                      
                       <div className="col-6">
                         <div className="form-group">
-                          <label>Text Input:</label>
-                          <textarea className="form-control w-100 min-h-250px" style={{resize: 'none', height: '-webkit-fill-available'}} value={state.text} 
-                            onChange={e => setState({ ...state, text: e.target.value })} >
 
-                          </textarea>
+                            <textarea className="form-control w-100 min-h-250px" ref={textarea}
+                              style={{resize: 'none', height: '-webkit-fill-available'}} value={state.text} 
+                              onChange={e => setState({ ...state, text: e.target.value })} >
+
+                            </textarea>
+
                         </div>
                       </div>
 
                       <div className="col-6">
                         <div className="form-group">
-                          <label>Text Output:</label>
                           <div className="w-100 min-h-250px border" style={{borderRadius: '3px'}}>
                             {parse("<div>" + state.text + "</div>")}
                           </div>

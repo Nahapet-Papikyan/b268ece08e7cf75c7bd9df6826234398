@@ -8,20 +8,20 @@ import {ContentContext} from "./contentContext";
 export const Navbar = () => {
 	let {log} = useContext(GlobalContext)
   let { pages, content, changeActivePage  } = useContext(ContentContext)
-  let [fullNavbar, setFullNavbar] = useState(false)
+  let [fullNavbar, setFullNavbar] = useState(true)
 
 
   return (
     <div className={`aside aside-left aside-fixed d-flex flex-column flex-row-auto ${fullNavbar && 'w-70px aside-minimize'}`}
-      style={{minHeight: `100vh`}}>
+      style={{minHeight: `100vh`, transition: 'width .3s'}}>
       <div className="brand flex-column-auto" id="kt_brand" kt-hidden-height="65">
         {
          !fullNavbar && <a href="https://bruschatka2000.ru/" className="brand-logo">
             Bruschatka 2000
           </a>
         }
-        <button className="brand-toggle btn btn-sm px-0" onClick={() => setFullNavbar(!fullNavbar)} >
-          <span className="svg-icon svg-icon svg-icon-xl">
+        <button className=" btn btn-sm px-0" onClick={() => setFullNavbar(!fullNavbar)} style={{transform: fullNavbar ? 'rotate(180deg)' : 'rotate(0)', transition: 'transition: all 0.5s ease 0s;'}} >
+          <span className="svg-icon svg-icon svg-icon-xl" >
             <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
               <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <polygon points="0 0 24 0 24 24 0 24"></polygon>
@@ -55,7 +55,10 @@ export const Navbar = () => {
               pages.map(page => 
               <li className="menu-item" key={page.id} >
                 <button className={`menu-link bg-dark-o-40 bg-hover-gray-800 border-0 menu-link ${content.activePageId === page.id && 'bg-gray-800'}`}
-                  onClick={() => changeActivePage (page.id)}>
+                  onClick={() => { changeActivePage(page.id); setFullNavbar(true)}}>
+                  <span class="svg-icon menu-icon">
+                    {page.icon}
+                  </span>
                   <span className="menu-text">{page.name}</span>
                 </button>              
               </li>
@@ -65,6 +68,9 @@ export const Navbar = () => {
               <button className="menu-link bg-dark-o-40 bg-hover-gray-800 border-0 menu-link"
                 style={{marginTop: '60vh'}}
                 onClick={() => log.out()}>
+                  <span class="svg-icon menu-icon">
+                    <i className="fad fa-sign-out"></i>
+                  </span>
                 <span className="menu-text">Logout</span>
               </button>              
             </li>
