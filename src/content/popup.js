@@ -320,8 +320,8 @@ export const Popup = (  ) => {
 
                       <div className="col-6">
                         <div className="form-group">
-                          <div className="w-100 min-h-250px border" style={{borderRadius: '3px'}}>
-                            {parse("<div>" + state.text + "</div>")}
+                          <div className="w-100 min-h-250px border bg-white" style={{borderRadius: '3px'}}>
+                            {parse('<div classname="bg-white">' + state.text + '</div>')}
                           </div>
                         </div>
                       </div>
