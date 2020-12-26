@@ -19,9 +19,9 @@
   text-align: center;
   align-items: center;
   -webkit-transition: background-color .5s;
-   -moz-transition: background-color .5s;
-     -o-transition: background-color .5s;
-        transition: background-color .5s;
+     -moz-transition: background-color .5s;
+       -o-transition: background-color .5s;
+          transition: background-color .5s;
   cursor: pointer;
 }
 .add-image i {
@@ -29,9 +29,9 @@
   font-size: 80px;
   color: #eee;
   -webkit-transition: color .5s, font-size .5s;
-   -moz-transition: color .5s, font-size .5s;
-     -o-transition: color .5s, font-size .5s;
-        transition: color .5s, font-size .5s;
+     -moz-transition: color .5s, font-size .5s;
+       -o-transition: color .5s, font-size .5s;
+          transition: color .5s, font-size .5s;
 }
 
 .add-image:hover {

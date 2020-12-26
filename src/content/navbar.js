@@ -12,7 +12,7 @@ export const Navbar = () => {
 
 
   return (
-    <div className={`aside aside-left aside-fixed d-flex flex-column flex-row-auto ${fullNavbar && 'w-70px aside-minimize'}`}
+    <div className={`aside aside-left aside-fixed d-flex flex-column flex-row-auto zindex-5 ${fullNavbar && 'w-70px aside-minimize'}`}
       style={{minHeight: `100vh`, transition: 'width .3s'}}>
       <div className="brand flex-column-auto" id="kt_brand" kt-hidden-height="65">
         {
