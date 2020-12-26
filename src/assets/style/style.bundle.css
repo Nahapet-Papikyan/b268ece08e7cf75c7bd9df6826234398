@@ -46064,8 +46064,7 @@ code {
     border-style: solid; }
   .checkbox.checkbox-outline-2x > span {
     border-width: 2px !important; }
-  .checkbox.checkbox-accent > span {
-    border-width: !important;
+  .checkbox.checkbox-accent  span {
     border-style: solid !important;
     background-color: transparent !important; }
     .checkbox.checkbox-accent > span:after {
