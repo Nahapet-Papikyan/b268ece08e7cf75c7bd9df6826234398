@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { GlobalContext } from '../context/global/globalContext';
+import { PhotoPopup } from "./components/photoPopup";
 const parse = require('html-react-parser');
 
 const tags = [
@@ -15,36 +16,37 @@ const tags = [
   },
   {
     id: 2, 
-    name: <i class="fad fa-paragraph"/>,
+    name: <i className="fad fa-paragraph"/>,
     tag: '<p></p>'
-  },
-  {
-    id: 3, 
-    name: <i class="fad fa-image"/>,
-    tag: '<img  />'
   }
 
 ]
 
 const categories = [
-  {
-    id: 0,
-    name: 'gavno', 
-    used: false
-  },
+
   {
     id: 1,
-    name: 'gavno 1', 
+    name: 'catergory 1', 
     used: false
   },
   {
     id: 2,
-    name: 'gavno 2', 
+    name: 'catergory 2', 
     used: false
   },
   {
     id: 3,
-    name: 'gavno polni', 
+    name: 'catergory 3', 
+    used: false
+  },
+  {
+    id: 4,
+    name: 'catergory 4', 
+    used: false
+  },
+  {
+    id: 5,
+    name: 'catergory 5', 
     used: false
   }
 ]
@@ -56,7 +58,7 @@ export const Popup = (  ) => {
   let { global, popup } = useContext(GlobalContext)
   let [state, setState] = useState({})
   let [showCategorys, setShowCategorys] = useState([false, false])
-  let fileInput = useRef()
+  let [photoPopup, setPhotoPopup] = useState({ type: '', isOpen: false, close: () => {}, callBack: () => {} })
   let textarea = useRef()
 
 
@@ -70,35 +72,25 @@ export const Popup = (  ) => {
     return () => setState({})
   }, [global.popup.data])
 
-  const changeSrc = (res) => {
-    setState({img: res, ...state});
-  }
+  console.log(photoPopup);
 
-  let openPhotoEditor = e=>{
-    getPhoto(e,res => changeSrc(res))
-  }
-
-  const getPhoto = (e, callBack) => {
-    if (window.FileReader) {
-      let file = e.target.files[0];
-      let reader = new FileReader();
-      if(file) {
-        reader.readAsDataURL(file);
-        reader.onload = function (e) {
-          let image = new Image();
-          image.src = e.target.result;
-          image.onload = callBack(image.src)
-        }
-      }
+  const openPhotoEditor = (type = '_') => {
+    return {
+      type,
+      isOpen: true,
+      callBack: res => type === 'avatar' ? setState({...state, img: res}) : setState({...state, text: state.text + res}), 
+      close: () => setPhotoPopup({ type: '', isOpen: false, close: () => {}, callBack: () => {} })
     }
   }
+  
 
   const addTag = (value) => {
     setState({...state, text: state.text.substring(0, textarea.current.selectionStart) + value + state.text.substring(textarea.current.selectionStart, state.text.length) })
   }
 
   return (
-    <div style={{ zIndex: 1000000, top: global.popup.status ? '0' : '-150%', left: '0', bottom: global.popup.status ? '0' : '',}} className="bg-dark-o-95 heigth-100vh position-fixed w-100 d-flex animate-all" >
+    <div style={{ zIndex: 1000000, top: global.popup.status ? '0' : '-150%', left: '0', bottom: global.popup.status ? '0' : '',}} 
+      className="bg-gray-500 heigth-100vh position-fixed w-100 d-flex animate-all" >
       {
         global.popup.status && 
 
@@ -106,7 +98,7 @@ export const Popup = (  ) => {
           <div className="row">
             <div className="col ">
               <div className="card card-custom gutter-b example example-compact m-0">
-                <div className="card-header">
+                <div className="card-header ">
                   <h3 className="card-title">Edit / New</h3> 
                   <div className="card-toolbar">
                     <div className="example-tools justify-content-center">
@@ -117,6 +109,9 @@ export const Popup = (  ) => {
                     </div>
                   </div>
                 </div>
+                
+                <PhotoPopup isOpen={photoPopup.isOpen} close={photoPopup.close} type={photoPopup.type}  callBack={photoPopup.callBack}/>
+
                 <div className="form">
                   <div className="card-body overflow-auto" style={{height: '84vh'}}>
                     <div className="form-group row">  
@@ -215,15 +210,15 @@ export const Popup = (  ) => {
                       </div>
 
                       <div className="col-6 pt-7">
-                        <button className="btn p-0" style={{margin: '1px auto', display: 'block', width: '100%'}}>
-                          <div className="add-image " onClick={() => fileInput.current.click()} style={{backgroundImage: state.img ? `url(${state.img})` : ''}}>
+                        <button className="btn p-0" 
+                          onClick={() => setPhotoPopup(openPhotoEditor('avatar'))}
+                          style={{margin: '1px auto', display: 'block', width: '100%'}}>
+                          <div className="add-image " style={{backgroundImage: state.img ? `url(${state.img})` : ''}}>
                             {
                               !state.img && <i className="far fa-plus-circle far" />
                             }
                           </div>
                         </button>
-                        <input type="file" className="d-none" ref={fileInput}  onChange={e => openPhotoEditor(e)}/> 
-                        {/* eventy petka poxancenq sran */}
                         {
                           type === "data" && <>
                         <div className="form-group">
@@ -290,6 +285,7 @@ export const Popup = (  ) => {
                       <label>Text Input:</label>
 
                         <div>
+                        <button className="bg-hover-warning-o-3 btn line-height-0 p-2 pl-4 text-center text-hover-primary " onClick={() => setPhotoPopup(openPhotoEditor())} ><i className="fad fa-image"/></button>
                           {
                             tags.map(item => <button className="bg-hover-warning-o-3 btn line-height-0 p-2 pl-4 text-center text-hover-primary " onClick={() => addTag(item.tag)} key={item.id}>{item.name}</button>)
                           }
@@ -321,7 +317,7 @@ export const Popup = (  ) => {
                       <div className="col-6">
                         <div className="form-group">
                           <div className="w-100 min-h-250px border bg-white" style={{borderRadius: '3px'}}>
-                            {parse('<div classname="bg-white">' + state.text + '</div>')}
+                            {parse('<div className="bg-white overflow-auto">' + state.text + '</div>')}
                           </div>
                         </div>
                       </div>

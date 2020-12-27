@@ -3,7 +3,7 @@ import {DbContext} from "./dbContext"
 import {APIUrl} from "./url"
 
 import {getKey} from "./key";
-import {CAI, CAP, CNI, GABT, RIBI, UIBIAD} from "../type";
+import {CAI, CAP, CNI, GABT, RIBI, UIBIAD, GAP, CPFB64} from "../type";
 
 
 export const DB = ({children}) => {
@@ -54,6 +54,22 @@ export const DB = ({children}) => {
             body: JSON.stringify({
                 args,
                 action: UIBIAD
+            }),
+        }),
+        [GAP]: (args) => ({
+            url: APIUrl,
+            method: "POST",
+            body: JSON.stringify({
+                args,
+                action: GAP
+            }),
+        }),
+        [CPFB64]: (args) => ({
+            url: APIUrl,
+            method: "POST",
+            body: JSON.stringify({
+                args,
+                action: CPFB64
             }),
         }),
     }

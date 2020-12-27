@@ -56,7 +56,7 @@ export const Navbar = () => {
               <li className="menu-item" key={page.id} >
                 <button className={`menu-link bg-dark-o-40 bg-hover-gray-800 border-0 menu-link ${content.activePageId === page.id && 'bg-gray-800'}`}
                   onClick={() => { changeActivePage(page.id); setFullNavbar(true)}}>
-                  <span class="svg-icon menu-icon">
+                  <span className="svg-icon menu-icon">
                     {page.icon}
                   </span>
                   <span className="menu-text">{page.name}</span>
@@ -68,7 +68,7 @@ export const Navbar = () => {
               <button className="menu-link bg-dark-o-40 bg-hover-gray-800 border-0 menu-link"
                 style={{marginTop: '60vh'}}
                 onClick={() => log.out()}>
-                  <span class="svg-icon menu-icon">
+                  <span className="svg-icon menu-icon">
                     <i className="fad fa-sign-out"></i>
                   </span>
                 <span className="menu-text">Logout</span>
