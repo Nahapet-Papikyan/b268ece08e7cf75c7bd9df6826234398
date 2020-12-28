@@ -16,6 +16,7 @@ export const PhotoPopup = ( {isOpen, type, close, callBack} ) => {
 
   useEffect(() => {
     getData(GAP, res => setState(res), () => {}, {})
+  // eslint-disable-next-line
   }, [])
 
   const changeSrc = (res) => {

@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import  '../assets/style/pages/login/login-2.css'
-
 import loginBackgroundImage from '../assets/media/svg/login-visual-2.svg'
 import { GlobalContext } from '../context/global/globalContext'
 
