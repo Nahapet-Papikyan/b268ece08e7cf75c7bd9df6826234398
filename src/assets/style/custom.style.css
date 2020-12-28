@@ -34,6 +34,30 @@
           transition: color .5s, font-size .5s;
 }
 
+.image-item {
+  width: 145px;
+  height: 150px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: solid 2px #eee;
+  opacity: 0.78;
+  margin: 5px 10px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.image-item:hover {
+  opacity: 1;
+  border: solid 2px rgb(33, 33, 33);
+  box-shadow: 0px 0px 5px 4px rgb(61, 61, 61);  
+}
+.image-item-selected {
+  opacity: 1;
+  border: solid 2px rgb(33, 33, 33);
+  box-shadow: 0px 0px 5px 4px rgb(61, 61, 61);
+}
+
 .add-image:hover {
   background-color: #d3d3d383;
 }

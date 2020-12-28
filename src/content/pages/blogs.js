@@ -8,7 +8,9 @@ const type = "blog"
 
 let newItem = {
   id: "",
-  text: ''
+  text: '',
+  cat: '',
+  cat1: '',
 }
 // Nahapet start
 export const Blogs = () => {
